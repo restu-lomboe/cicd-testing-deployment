@@ -9,11 +9,11 @@ jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v6
 
-      - name: Deploy files over FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
