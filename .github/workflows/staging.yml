@@ -1,0 +1,22 @@
+name: Deploy via FTP On Push to Master
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v6
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER_STAGING }}
+          username: ${{ secrets.FTP_USERNAME_STAGING }}
+          password: ${{ secrets.FTP_PASSWORD_STAGING }}
+          local-dir: ./
+          git-ftp-args: --insecure
